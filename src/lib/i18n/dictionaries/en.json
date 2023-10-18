@@ -1,0 +1,9 @@
+{
+  "header": {
+    "modeToggle": {
+      "light": "light",
+      "dark": "dark",
+      "system": "system"
+    }
+  }
+}

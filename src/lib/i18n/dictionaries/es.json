@@ -1,0 +1,9 @@
+{
+  "header": {
+    "modeToggle": {
+      "light": "Ligera",
+      "dark": "Oscura",
+      "system": "Sistema"
+    }
+  }
+}

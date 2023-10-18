@@ -1,7 +1,8 @@
 import { League_Spartan, Libre_Baskerville } from "next/font/google";
 import Providers from "@/providers";
+import { PropsWithChildren } from "react";
 
-import "./globals.css";
+import "../globals.css";
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
@@ -17,11 +18,13 @@ const libreBaskerville = Libre_Baskerville({
   display: "swap",
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+type Props = PropsWithChildren & {
+  params: {
+    lang: string;
+  };
+};
+
+export default function RootLayout({ children, params: { lang } }: Props) {
   return (
     <html
       lang="en"
