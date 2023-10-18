@@ -57,3 +57,7 @@
     @apply bg-background text-foreground font-regular;
   }
 }
+
+.container {
+  @apply mx-auto max-w-[1230px] px-[15px];
+}
