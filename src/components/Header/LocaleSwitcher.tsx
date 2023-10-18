@@ -24,12 +24,12 @@ export default function LocaleSwitcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           {currentLang}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent >
         {i18n.locales.map((locale) => (
           <Link href={redirectedPathName(locale)} key={locale}>
             <DropdownMenuItem>{locale}</DropdownMenuItem>

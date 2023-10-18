@@ -11,8 +11,18 @@ import {
   DropdownMenuTrigger,
   Button,
 } from "@/components/ui";
+import { Locale } from "@/lib/i18n/i18n-config";
+import { getDictionary } from "@/lib/i18n/getDictionary";
 
-export default function ModeToggle() {
+type Props = {
+  dictionary: {
+    light: string;
+    dark: string;
+    system: string;
+  };
+};
+
+export default function ModeToggle({ dictionary }: Props) {
   const { setTheme } = useTheme();
 
   return (
@@ -26,13 +36,13 @@ export default function ModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+          {dictionary.light}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+          {dictionary.dark}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+          {dictionary.system}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

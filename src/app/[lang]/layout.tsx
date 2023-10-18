@@ -3,6 +3,8 @@ import Providers from "@/providers";
 import { PropsWithChildren } from "react";
 
 import "../globals.css";
+import Header from "@/components/Header";
+import { Locale } from "@/lib/i18n/i18n-config";
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
@@ -20,7 +22,7 @@ const libreBaskerville = Libre_Baskerville({
 
 type Props = PropsWithChildren & {
   params: {
-    lang: string;
+    lang: Locale;
   };
 };
 
@@ -33,6 +35,7 @@ export default function RootLayout({ children, params: { lang } }: Props) {
       <body>
         <Providers>
           <div className="flex min-h-screen flex-col">
+            <Header lang={lang} />
             <main className="container grow">{children}</main>
           </div>
         </Providers>
