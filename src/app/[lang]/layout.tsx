@@ -1,10 +1,10 @@
 import { League_Spartan, Libre_Baskerville } from "next/font/google";
 import Providers from "@/providers";
 import { PropsWithChildren } from "react";
+import Header from "@/components/Header";
+import { Locale, i18n } from "@/lib/i18n/i18n-config";
 
 import "../globals.css";
-import Header from "@/components/Header";
-import { Locale } from "@/lib/i18n/i18n-config";
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ type Props = PropsWithChildren & {
 export default function RootLayout({ children, params: { lang } }: Props) {
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${leagueSpartan.variable} ${libreBaskerville.variable}`}
     >
       <body>
@@ -42,4 +42,8 @@ export default function RootLayout({ children, params: { lang } }: Props) {
       </body>
     </html>
   );
+}
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }

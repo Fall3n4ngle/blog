@@ -14,7 +14,7 @@ export default async function Header({ lang }: Props) {
   } = await getDictionary(lang);
 
   return (
-    <header className="py-4">
+    <header className="py-4 sticky top-0 z-50">
       <div className="container flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-2.5">
@@ -25,3 +25,4 @@ export default async function Header({ lang }: Props) {
     </header>
   );
 }
+
