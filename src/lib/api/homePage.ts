@@ -59,12 +59,16 @@ type GetPostsReturnType = {
 
 type GetPostsProps = {
   sort?: SortBy;
+  name?: string;
 };
 
-export const getPosts = async ({ sort = "createdAt:desc" }: GetPostsProps) => {
+export const getPosts = async ({
+  sort = "createdAt:desc",
+  name = "",
+}: GetPostsProps) => {
   const query = gql`
-    query getPosts($sort: [String]!) {
-      posts(sort: $sort) {
+    query getPosts($sort: [String]!, $name: String) {
+      posts(sort: $sort, filters: { name: { containsi: $name } }) {
         data {
           id
           attributes {
@@ -95,6 +99,6 @@ export const getPosts = async ({ sort = "createdAt:desc" }: GetPostsProps) => {
 
   const {
     posts: { data: posts },
-  }: GetPostsReturnType = await client.request(query, { sort });
+  }: GetPostsReturnType = await client.request(query, { sort, name });
   return { posts };
 };

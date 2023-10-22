@@ -5,12 +5,13 @@ import readingTime from "reading-time";
 type Props = {
   searchParams: {
     sort?: SortBy;
+    name?: string;
   };
 };
 
-export default async function Home({ searchParams: { sort } }: Props) {
+export default async function Home({ searchParams: { sort, name } }: Props) {
   const { author, categories } = await getHomePageData();
-  const { posts } = await getPosts({ sort });
+  const { posts } = await getPosts({ sort, name });
 
   return (
     <>
