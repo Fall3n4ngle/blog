@@ -2,9 +2,6 @@ import { gql } from "graphql-request";
 import { client } from "./client";
 
 type GetHomePageDataReturnType = {
-  posts: {
-    data: Post[];
-  };
   categories: {
     data: Category[];
   };
@@ -16,33 +13,6 @@ type GetHomePageDataReturnType = {
 export const getHomePageData = async () => {
   const query = gql`
     query {
-      posts {
-        data {
-          id
-          attributes {
-            name
-            excerpt
-            createdAt
-            content
-            categories {
-              data {
-                attributes {
-                  name
-                  slug
-                }
-              }
-            }
-            image {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-
       categories {
         data {
           id
@@ -76,8 +46,55 @@ export const getHomePageData = async () => {
   const {
     author: { data: author },
     categories: { data: categories },
-    posts: { data: posts },
   }: GetHomePageDataReturnType = await client.request(query);
 
-  return { author, categories, posts };
+  return { author, categories };
+};
+
+type GetPostsReturnType = {
+  posts: {
+    data: Post[];
+  };
+};
+
+type GetPostsProps = {
+  sort?: SortBy;
+};
+
+export const getPosts = async ({ sort = "createdAt:desc" }: GetPostsProps) => {
+  const query = gql`
+    query getPosts($sort: [String]!) {
+      posts(sort: $sort) {
+        data {
+          id
+          attributes {
+            name
+            excerpt
+            createdAt
+            content
+            categories {
+              data {
+                attributes {
+                  name
+                  slug
+                }
+              }
+            }
+            image {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const {
+    posts: { data: posts },
+  }: GetPostsReturnType = await client.request(query, { sort });
+  return { posts };
 };
