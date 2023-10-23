@@ -60,15 +60,23 @@ type GetPostsReturnType = {
 type GetPostsProps = {
   sort?: SortBy;
   name?: string;
+  category?: string;
 };
 
 export const getPosts = async ({
   sort = "createdAt:desc",
   name = "",
+  category = ""
 }: GetPostsProps) => {
   const query = gql`
     query getPosts($sort: [String]!, $name: String) {
-      posts(sort: $sort, filters: { name: { containsi: $name } }) {
+      posts(
+        sort: $sort
+        filters: {
+          name: { containsi: $name }
+          ${category}
+        }
+      ) {
         data {
           id
           attributes {
