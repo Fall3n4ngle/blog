@@ -3,6 +3,7 @@ import Providers from "@/providers";
 import { PropsWithChildren } from "react";
 import Header from "@/components/Header";
 import { Locale, i18n } from "@/lib/i18n/i18n-config";
+import { Metadata } from "next";
 
 import "../globals.css";
 
@@ -36,13 +37,22 @@ export default function RootLayout({ children, params: { lang } }: Props) {
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Header lang={lang} />
-            <main className="container grow pb-12 pt-3">{children}</main>
+            <main className="container grow pb-8 pt-3">{children}</main>
           </div>
         </Providers>
       </body>
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: {
+    default: "DevBlog",
+    template: "%s DevBlog",
+  },
+  description:
+    "Embark on a journey through the world of code, programming, and development. Uncover innovation, master skills, and shape the future.",
+};
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

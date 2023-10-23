@@ -30,7 +30,7 @@ type Post = {
     excerpt: string;
     image: {
       data: {
-        attributes: {
+        attributes?: {
           url: string;
         };
       }[];

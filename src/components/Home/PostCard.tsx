@@ -6,6 +6,7 @@ import {
   Instagram,
   Timer,
   CalendarDays,
+  ImageOff,
 } from "lucide-react";
 import { getDate } from "@/lib/utils/getDate";
 
@@ -25,12 +26,19 @@ export default function PostCard({
         <div className="grid grid-cols-1 sm:grid-cols-5 sm:gap-5">
           <div className="sm:col-span-2">
             <div className="relative overflow-hidden pt-[75%] ">
-              <Image
-                src={"http://localhost:1337" + image.data[0].attributes.url}
-                alt={name}
-                fill
-                className="rounded-md object-cover"
-              />
+              {image.data[0]?.attributes?.url ? (
+                <Image
+                  src={"http://localhost:1337" + image.data[0].attributes.url}
+                  alt={name}
+                  fill
+                  className="rounded-md object-cover"
+                />
+              ) : (
+                <div className="absolute bg-secondary rounded-md top-0 left-0 w-full h-full flex flex-col gap-3 items-center justify-center">
+                  <ImageOff size={45} />
+                  <p>Image not found</p>
+                </div>
+              )}
               <div className="absolute bottom-3 left-3 flex items-center gap-3">
                 {categories.data.map((category) => (
                   <Badge key={category.id}>{category.attributes.name}</Badge>

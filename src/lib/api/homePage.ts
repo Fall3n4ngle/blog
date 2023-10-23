@@ -54,6 +54,14 @@ export const getHomePageData = async () => {
 type GetPostsReturnType = {
   posts: {
     data: Post[];
+    meta: {
+      pagination: {
+        page: number;
+        pageSize: number;
+        pageCount: number;
+        total: number;
+      };
+    };
   };
 };
 
@@ -61,12 +69,16 @@ type GetPostsProps = {
   sort?: SortBy;
   name?: string;
   category?: string;
+  page?: string | number;
+  pageSize?: number;
 };
 
 export const getPosts = async ({
   sort = "createdAt:desc",
   name = "",
-  category = ""
+  category = "",
+  page = 1,
+  pageSize = 5,
 }: GetPostsProps) => {
   const query = gql`
     query getPosts($sort: [String]!, $name: String) {
@@ -76,6 +88,7 @@ export const getPosts = async ({
           name: { containsi: $name }
           ${category}
         }
+        pagination: { page: ${page}, pageSize: ${pageSize} }
       ) {
         data {
           id
@@ -101,12 +114,20 @@ export const getPosts = async ({
             }
           }
         }
+        meta {
+          pagination {
+            page
+            pageSize
+            pageCount
+            total
+          }
+        }
       }
     }
   `;
 
   const {
-    posts: { data: posts },
+    posts: { data: posts, meta },
   }: GetPostsReturnType = await client.request(query, { sort, name });
-  return { posts };
+  return { posts, meta };
 };
