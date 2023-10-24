@@ -9,7 +9,7 @@ import {
 } from "@/components/Home";
 import { getPosts } from "@/lib/api/getPosts";
 import { getHomePageData } from "@/lib/api/gethomePageData";
-import { Locale } from "@/lib/i18n/i18n-config";
+import { Locale, i18n } from "@/lib/i18n/i18n-config";
 import { formatCategory } from "@/lib/utils/formatCategory";
 import { Metadata } from "next";
 import readingTime from "reading-time";
@@ -84,5 +84,15 @@ export default async function Home({
 }
 
 export async function generateMetadata() {
-  return {} as Metadata;
+  let languages: Record<string, string> = {};
+  i18n.locales.map((locale) => {
+    languages[locale] = `${locale}`;
+  });
+
+  return {
+    alternates: {
+      canonical: "/",
+      languages,
+    },
+  } as Metadata;
 }
