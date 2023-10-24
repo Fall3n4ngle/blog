@@ -5,8 +5,11 @@ import {
   PostCard,
   Search,
   Sort,
+  SubscribeCard,
 } from "@/components/Home";
-import { getHomePageData, getPosts } from "@/lib/api/homePage";
+import { getPosts } from "@/lib/api/getPosts";
+import { getHomePageData } from "@/lib/api/gethomePageData";
+import { Locale } from "@/lib/i18n/i18n-config";
 import { formatCategory } from "@/lib/utils/formatCategory";
 import { Metadata } from "next";
 import readingTime from "reading-time";
@@ -18,12 +21,16 @@ type Props = {
     category?: string;
     page?: string;
   };
+  params: {
+    lang: Locale;
+  };
 };
 
 const pageSize = 5;
 
 export default async function Home({
   searchParams: { sort, name, category, page },
+  params: { lang },
 }: Props) {
   const categoryFilter = category ? formatCategory(category) : "";
 
@@ -32,7 +39,14 @@ export default async function Home({
     meta: {
       pagination: { pageCount },
     },
-  } = await getPosts({ sort, name, category: categoryFilter, page, pageSize });
+  } = await getPosts({
+    sort,
+    name,
+    category: categoryFilter,
+    page,
+    pageSize,
+    locale: lang,
+  });
 
   const { author, categories } = await getHomePageData();
 
@@ -59,11 +73,12 @@ export default async function Home({
             );
           })}
         </div>
-        <div className="col-span-2 hidden lg:block">
+        <div className="col-span-2 hidden lg:flex flex-col gap-6">
           <AuthorCard attributes={author.attributes} />
+          <SubscribeCard />
         </div>
       </div>
-      <Pagination totalPages={pageCount} />
+      {pageCount > 1 ? <Pagination totalPages={pageCount} /> : null}
     </>
   );
 }

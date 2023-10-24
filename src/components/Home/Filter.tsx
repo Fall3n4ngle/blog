@@ -11,6 +11,7 @@ type Props = {
 export default function Filter({ categories }: Props) {
   const { queryParams, setQueryParams } = useQueryParams<{
     category?: string;
+    page?: number;
   }>();
 
   const [selectedCategories, setSelectedCategories] = useState(
@@ -31,12 +32,15 @@ export default function Filter({ categories }: Props) {
   };
 
   useEffect(() => {
+    const setQueryParamsCopy = (args: { category?: string; page?: number }) =>
+      setQueryParams(args);
+
     const category = selectedCategories.length
       ? selectedCategories.join(".")
       : undefined;
 
-    setQueryParams({ category });
-  }, [selectedCategories, setQueryParams]);
+    setQueryParamsCopy({ category, page: 1 });
+  }, [selectedCategories]);
 
   return (
     <div className="flex items-center gap-3">
