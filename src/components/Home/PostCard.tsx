@@ -6,19 +6,20 @@ import {
   Instagram,
   Timer,
   CalendarDays,
-  ImageOff,
 } from "lucide-react";
 import { getDate } from "@/lib/utils/getDate";
+import Link from "next/link";
+import ImageNotFound from "../ImageNotFound";
 
 type Props = Pick<Post, "attributes"> & {
   readingTime: string;
 };
 
 export default function PostCard({
-  attributes: { categories, createdAt, excerpt, image, name },
+  attributes: { categories, publishedAt, excerpt, image, name, slug },
   readingTime,
 }: Props) {
-  const date = getDate(createdAt);
+  const date = getDate(publishedAt);
 
   return (
     <Card>
@@ -34,10 +35,7 @@ export default function PostCard({
                   className="rounded-md object-cover"
                 />
               ) : (
-                <div className="absolute bg-secondary rounded-md top-0 left-0 w-full h-full flex flex-col gap-3 items-center justify-center">
-                  <ImageOff size={45} />
-                  <p>Image not found</p>
-                </div>
+                <ImageNotFound />
               )}
               <div className="absolute bottom-3 left-3 flex items-center gap-3">
                 {categories.data.map((category) => (
@@ -48,9 +46,11 @@ export default function PostCard({
           </div>
           <div className="sm:col-span-3 pt-6">
             <div className="mb-5">
-              <h2 className="inline relative after:block after:content-[''] after:absolute after:h-[3px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left font-title hover:text-primary cursor-pointer transition-all scroll-m-20 text-2xl sm:text-4xl font-semibold tracking-tight ">
-                {name}
-              </h2>
+              <Link href={`/${slug}`}>
+                <h2 className="inline relative after:block after:content-[''] after:absolute after:h-[3px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left font-title hover:text-primary cursor-pointer transition-all scroll-m-20 text-2xl sm:text-4xl font-semibold tracking-tight ">
+                  {name}
+                </h2>
+              </Link>
             </div>
             <div className="leading-7 mb-5 text-muted-foreground flex items-start gap-2.5">
               <span>Share:</span>
@@ -73,7 +73,7 @@ export default function PostCard({
                 <Timer /> {readingTime}
               </div>
               <div className="flex items-center gap-2">
-                <CalendarDays /> {date}
+                <CalendarDays /> <time dateTime={publishedAt}>{date}</time>
               </div>
             </div>
           </div>

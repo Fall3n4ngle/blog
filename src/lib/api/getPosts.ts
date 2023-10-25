@@ -47,9 +47,10 @@ export const getPosts = async ({
           data {
             id
             attributes {
+              slug
               name
               excerpt
-              createdAt
+              publishedAt
               content
               categories {
                 data {

@@ -61,3 +61,39 @@
 .container {
   @apply mx-auto max-w-[1230px] px-[15px];
 }
+
+.post-content p {
+  @apply leading-7 [&:not(:first-child)]:mt-6 text-sm sm:text-[1rem];
+}
+
+.post-content ul, ol {
+  @apply my-6 ml-6  [&>li]:mt-2;
+}
+
+.post-content ul {
+  @apply list-disc;
+}
+
+.post-content blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
+}
+
+.post-content h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+.post-content h2 {
+  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+}
+
+.post-content h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+.post-content h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+.post-content code {
+  @apply block rounded bg-muted p-3 mt-6 font-mono text-sm font-semibold whitespace-break-spaces;
+}

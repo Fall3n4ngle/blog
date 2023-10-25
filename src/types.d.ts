@@ -25,6 +25,7 @@ type Category = {
 type Post = {
   id: string;
   attributes: {
+    slug: string;
     content: string | null;
     name: string;
     excerpt: string;
@@ -35,7 +36,7 @@ type Post = {
         };
       }[];
     };
-    createdAt: string;
+    publishedAt: string;
     categories: {
       data: Category[];
     };
