@@ -3,7 +3,7 @@
 import { Input, Label } from "@/components/ui";
 import { subscribe } from "@/lib/actions/subscribe";
 import { useRef } from "react";
-import SubscribeFormButton from "./SubscribeFormButton";
+import SubscribeFormButton from "../FormButton";
 import { useToast } from "@/lib/hooks/useToast";
 import { Check } from "lucide-react";
 

@@ -8,5 +8,6 @@ const emailSchema = string([email()]);
 export const subscribe = async (formData: FormData) => {
   const email = formData.get("email");
   const validatedEmail = parse(emailSchema, email);
-  await postSubscribe({ email: validatedEmail });
+  const response = await postSubscribe({ email: validatedEmail });
+  return response;
 };

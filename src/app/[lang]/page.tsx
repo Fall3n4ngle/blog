@@ -69,6 +69,7 @@ export default async function Home({
                 key={post.id}
                 attributes={post.attributes}
                 readingTime={text}
+                id={post.id}
               />
             );
           })}

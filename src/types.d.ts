@@ -43,4 +43,15 @@ type Post = {
   };
 };
 
+type TComment = {
+  id: string;
+  attributes: {
+    name: string;
+    email: string;
+    content: string;
+    post: string;
+    publishedAt: string;
+  }
+}
+
 type SortBy = "createdAt:desc" | "createdAt:asc" | "name:asc" | "name:desc";

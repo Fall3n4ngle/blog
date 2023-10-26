@@ -1,5 +1,5 @@
-import { PostDescription } from "@/components/Post";
-import { getPostBySlug } from "@/lib/api/getPostBySlug";
+import { CommentFormCard, PostDescription } from "@/components/Post";
+import { getPostById } from "@/lib/api/getPostById";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { getDate } from "@/lib/utils/getDate";
 import { markdownToHtml } from "@/lib/utils/markdownToHtml";
@@ -9,14 +9,16 @@ import readingTime from "reading-time";
 type Props = {
   params: {
     lang?: Locale;
-    slug?: string;
+    id?: string;
   };
 };
 
-export default async function Post({ params: { lang, slug } }: Props) {
+export default async function Post({ params: { lang, id } }: Props) {
+  if (!id) return notFound();
+
   const {
     post: { data },
-  } = await getPostBySlug({ slug, locale: lang });
+  } = await getPostById({ id, locale: lang });
 
   if (!data) return notFound();
 
@@ -40,8 +42,9 @@ export default async function Post({ params: { lang, slug } }: Props) {
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: parsedContent }}
-        className="post-content"
+        className="post-content mb-12"
       />
+      <CommentFormCard postId={id} />
     </div>
   );
 }

@@ -13,11 +13,13 @@ import ImageNotFound from "../ImageNotFound";
 
 type Props = Pick<Post, "attributes"> & {
   readingTime: string;
+  id: string;
 };
 
 export default function PostCard({
   attributes: { categories, publishedAt, excerpt, image, name, slug },
   readingTime,
+  id
 }: Props) {
   const date = getDate(publishedAt);
 
@@ -46,7 +48,7 @@ export default function PostCard({
           </div>
           <div className="sm:col-span-3 pt-6">
             <div className="mb-5">
-              <Link href={`/${slug}`}>
+              <Link href={`/${id}`}>
                 <h2 className="inline relative after:block after:content-[''] after:absolute after:h-[3px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left font-title hover:text-primary cursor-pointer transition-all scroll-m-20 text-2xl sm:text-4xl font-semibold tracking-tight ">
                   {name}
                 </h2>

@@ -35,7 +35,7 @@ export default function PostDescription({
           <ImageNotFound />
         )}
       </div>
-      <h2 className="mb-4 scroll-m-20 text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight">
+      <h2 className="mb-4 scroll-m-20 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-title">
         {name}
       </h2>
       <div className="flex mb-7 gap-8 text-muted-foreground justify-between items-center ">
