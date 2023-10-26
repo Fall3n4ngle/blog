@@ -1,6 +1,7 @@
 import { gql } from "graphql-request";
 import { Locale } from "../i18n/i18n-config";
 import { client } from "./client";
+import { cache } from "react";
 
 type GetPostsReturnType = {
   posts: {

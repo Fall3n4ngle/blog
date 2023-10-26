@@ -17,7 +17,7 @@ type Props = Pick<Post, "attributes"> & {
 };
 
 export default function PostCard({
-  attributes: { categories, publishedAt, excerpt, image, name, slug },
+  attributes: { categories, publishedAt, excerpt, image, name },
   readingTime,
   id
 }: Props) {

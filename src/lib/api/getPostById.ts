@@ -1,6 +1,7 @@
 import { gql } from "graphql-request";
 import { client } from "./client";
 import { Locale } from "../i18n/i18n-config";
+import { cache } from "react";
 
 type Props = {
   id: string;
@@ -13,7 +14,7 @@ type GetPostBySlugReturnType = {
   };
 };
 
-export const getPostById = async ({ id, locale = "en" }: Props) => {
+export const getPostById = cache(async ({ id, locale = "en" }: Props) => {
   const query = gql`
     query getPostById($id: ID!, $locale: I18NLocaleCode) {
       post(id: $id, locale: $locale) {
@@ -31,6 +32,7 @@ export const getPostById = async ({ id, locale = "en" }: Props) => {
             name
             publishedAt
             content
+            excerpt
             categories {
               data {
                 attributes {
@@ -59,5 +61,6 @@ export const getPostById = async ({ id, locale = "en" }: Props) => {
     id,
     locale,
   });
+
   return response;
-};
+});

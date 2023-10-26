@@ -15,7 +15,7 @@ export default function Comment({ content, name, publishedAt }: Props) {
         <span className="text-lg font-semibold">{name}</span>
         <span className="text-sm text-muted-foreground">{date}</span>
       </div>
-      <p className="leading-7 text-sm">{content}</p>
+      <p className="leading-7 text-sm text-muted-foreground">{content}</p>
     </div>
   );
 }
