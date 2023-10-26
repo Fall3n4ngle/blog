@@ -39,6 +39,16 @@ export const getPostById = async ({ id, locale = "en" }: Props) => {
                 }
               }
             }
+            comments {
+              data {
+                id
+                attributes {
+                  name
+                  content
+                  publishedAt
+                }
+              }
+            }
           }
         }
       }

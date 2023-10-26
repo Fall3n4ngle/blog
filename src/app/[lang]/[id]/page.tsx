@@ -1,4 +1,8 @@
-import { CommentFormCard, PostDescription } from "@/components/Post";
+import {
+  CommentFormCard,
+  CommentsCard,
+  PostDescription,
+} from "@/components/Post";
 import { getPostById } from "@/lib/api/getPostById";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { getDate } from "@/lib/utils/getDate";
@@ -22,7 +26,8 @@ export default async function Post({ params: { lang, id } }: Props) {
 
   if (!data) return notFound();
 
-  const { image, name, content, publishedAt, categories } = data.attributes;
+  const { image, name, content, publishedAt, categories, comments } =
+    data.attributes;
 
   const parsedContent = await markdownToHtml(content ?? "No content yet");
   const { text } = readingTime(content ?? "");
@@ -44,7 +49,10 @@ export default async function Post({ params: { lang, id } }: Props) {
         dangerouslySetInnerHTML={{ __html: parsedContent }}
         className="post-content mb-12"
       />
-      <CommentFormCard postId={id} />
+      <div className="mb-12">
+        <CommentFormCard postId={id} />
+      </div>
+      <CommentsCard comments={comments.data} />
     </div>
   );
 }

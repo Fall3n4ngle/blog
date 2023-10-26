@@ -40,6 +40,9 @@ type Post = {
     categories: {
       data: Category[];
     };
+    comments: {
+      data: TComment[];
+    };
   };
 };
 
@@ -51,7 +54,7 @@ type TComment = {
     content: string;
     post: string;
     publishedAt: string;
-  }
-}
+  };
+};
 
 type SortBy = "createdAt:desc" | "createdAt:asc" | "name:asc" | "name:desc";

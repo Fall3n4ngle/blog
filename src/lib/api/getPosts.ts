@@ -4,7 +4,7 @@ import { client } from "./client";
 
 type GetPostsReturnType = {
   posts: {
-    data: Post[];
+    data: Omit<Post[], "comments">;
     meta: {
       pagination: {
         page: number;
