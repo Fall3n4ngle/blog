@@ -22,10 +22,10 @@ export default function PostDescription({
 }: Props) {
   return (
     <>
-      <div className="relative pt-[62%] mb-7">
+      <div className="relative pt-[55%] mb-7">
         {image.data[0]?.attributes?.url ? (
           <Image
-            src={"http://localhost:1337" + image.data[0].attributes.url}
+            src={process.env.CMS_URL + image.data[0].attributes.url}
             alt={name}
             fill
             className="rounded-md object-cover"
@@ -35,10 +35,10 @@ export default function PostDescription({
           <ImageNotFound />
         )}
       </div>
-      <h2 className="mb-4 scroll-m-20 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-title">
+      <h2 className="mb-2 scroll-m-20 text-3xl sm:text-4xl font-semibold tracking-tight font-title">
         {name}
       </h2>
-      <div className="flex mb-7 gap-8 text-muted-foreground justify-between items-center ">
+      <div className="flex mb-7 gap-8 text-muted-foreground justify-between items-center text-sm sm:text-base">
         <div className="flex items-center gap-2">
           <Timer /> {readingTime}
         </div>
@@ -48,7 +48,9 @@ export default function PostDescription({
       </div>
       <div className="flex items-center gap-3">
         {categories.data.map((category) => (
-          <Badge key={category.id}>{category.attributes.name}</Badge>
+          <Badge key={category.id} >
+            {category.attributes.name}
+          </Badge>
         ))}
       </div>
     </>

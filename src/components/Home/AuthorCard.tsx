@@ -6,14 +6,12 @@ type Props = Pick<Author, "attributes">;
 export default function AuthorCard({
   attributes: { bio, image, name, position },
 }: Props) {
-  console.log(image.data.attributes.url);
-
   return (
     <Card>
       <CardContent className="p-4">
         <div className="relative pt-[72%] mb-4">
           <Image
-            src={"http://localhost:1337" + image.data.attributes.url}
+            src={process.env.CMS_URL + image.data.attributes.url}
             alt={name}
             fill
             className="rounded-md object-cover"

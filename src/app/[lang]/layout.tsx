@@ -45,21 +45,6 @@ export default function RootLayout({ children, params: { lang } }: Props) {
   );
 }
 
-export async function generateMetadata() {
-  return {
-    title: {
-      default: "DevBlog",
-      template: "%s DevBlog",
-    },
-    description:
-      "Embark on a journey through the world of code, programming, and development. Uncover innovation, master skills, and shape the future.",
-    metadataBase: new URL("http://localhost:3000"),
-    verification: {
-      google: "google-site-verification=",
-    },
-  } as Metadata;
-}
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }

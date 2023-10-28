@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Input,
-  Label,
-  Textarea,
-} from "@/components/ui";
+import { Input, Label, Textarea } from "@/components/ui";
 import { useRef } from "react";
 import FormButton from "@/components/FormButton";
 import { useToast } from "@/lib/hooks/useToast";

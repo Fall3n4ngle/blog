@@ -33,6 +33,8 @@ type Post = {
       data: {
         attributes?: {
           url: string;
+          width: number;
+          height: number;
         };
       }[];
     };
@@ -56,6 +58,5 @@ type TComment = {
     publishedAt: string;
   };
 };
-
 
 type SortBy = "createdAt:desc" | "createdAt:asc" | "name:asc" | "name:desc";

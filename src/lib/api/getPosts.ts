@@ -65,6 +65,8 @@ export const getPosts = async ({
                 data {
                   attributes {
                     url
+                    width
+                    height
                   }
                 }
               }

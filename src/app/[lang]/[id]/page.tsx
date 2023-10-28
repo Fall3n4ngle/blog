@@ -3,9 +3,10 @@ import {
   CommentsCard,
   PostDescription,
 } from "@/components/Post";
+import ShareButtons from "@/components/Post/ShareButtons";
 import { getPostById } from "@/lib/api/getPostById";
 import { getPostsMeta } from "@/lib/api/getPostsMeta";
-import { Locale } from "@/lib/i18n/i18n-config";
+import { Locale, i18n } from "@/lib/i18n/i18n-config";
 import { getDate } from "@/lib/utils/getDate";
 import { markdownToHtml } from "@/lib/utils/markdownToHtml";
 import { Metadata } from "next";
@@ -37,7 +38,7 @@ export default async function Post({ params: { lang, id } }: Props) {
 
   return (
     <div className="max-w-[700px] mx-auto">
-      <div className="mb-12">
+      <div className="mb-4">
         <PostDescription
           categories={categories}
           date={date}
@@ -46,6 +47,9 @@ export default async function Post({ params: { lang, id } }: Props) {
           publishedAt={publishedAt}
           readingTime={text}
         />
+      </div>
+      <div className="mb-12">
+        <ShareButtons />
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: parsedContent }}
@@ -62,33 +66,4 @@ export default async function Post({ params: { lang, id } }: Props) {
 export async function generateStaticParams() {
   const posts = await getPostsMeta();
   return posts.map(({ id }) => ({ id }));
-}
-
-export async function generateMetadata({ params: { id, lang } }: Props) {
-  if (!id) {
-    return {
-      title: "Not found",
-      description: "A post with id was not found",
-    };
-  }
-
-  const {
-    post: { data },
-  } = await getPostById({ id, locale: lang });
-
-  if (!data) {
-    return {
-      title: "Not found",
-      description: "A post with id was not found",
-    };
-  }
-
-  const {
-    attributes: { name, excerpt },
-  } = data;
-
-  return {
-    title: name,
-    description: excerpt,
-  } as Metadata;
 }

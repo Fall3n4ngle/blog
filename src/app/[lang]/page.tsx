@@ -83,17 +83,3 @@ export default async function Home({
     </>
   );
 }
-
-export async function generateMetadata() {
-  let languages: Record<string, string> = {};
-  i18n.locales.map((locale) => {
-    languages[locale] = `${locale}`;
-  });
-
-  return {
-    alternates: {
-      canonical: "/",
-      languages,
-    },
-  } as Metadata;
-}

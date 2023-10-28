@@ -31,7 +31,7 @@ export default function PostCard({
             <div className="relative overflow-hidden pt-[75%] ">
               {image.data[0]?.attributes?.url ? (
                 <Image
-                  src={"http://localhost:1337" + image.data[0].attributes.url}
+                  src={process.env.CMS_URL + image.data[0].attributes.url}
                   alt={name}
                   fill
                   className="rounded-md object-cover"
@@ -53,21 +53,6 @@ export default function PostCard({
                   {name}
                 </h2>
               </Link>
-            </div>
-            <div className="leading-7 mb-5 text-muted-foreground flex items-start gap-2.5">
-              <span>Share:</span>
-              <Facebook
-                size={22}
-                className="hover:text-primary transition-all cursor-pointer"
-              />
-              <Twitter
-                size={22}
-                className="hover:text-primary transition-all cursor-pointer"
-              />
-              <Instagram
-                size={22}
-                className="hover:text-primary transition-all cursor-pointer"
-              />
             </div>
             <p className="!leading-7 text-xs sm:text-sm mb-5">{excerpt}</p>
             <div className="flex gap-8 text-muted-foreground justify-between sm:justify-start sm:text-sm items-center text-xs">

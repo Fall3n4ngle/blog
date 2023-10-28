@@ -26,6 +26,8 @@ export const getPostById = cache(async ({ id, locale = "en" }: Props) => {
               data {
                 attributes {
                   url
+                  width
+                  height
                 }
               }
             }
