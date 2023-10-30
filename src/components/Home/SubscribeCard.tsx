@@ -7,17 +7,29 @@ import {
 } from "@/components/ui";
 import SubscribeForm from "./SubscribeForm";
 
-export default function SubscribeCard() {
+type Props = {
+  dictionary: {
+    title: string;
+    description: string;
+    subscribeForm: {
+      label: string;
+      buttonLabel: string;
+      successMessage: string;
+    };
+  };
+};
+
+export default function SubscribeCard({
+  dictionary: { description, subscribeForm, title },
+}: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-title">Subscribe</CardTitle>
-        <CardDescription>
-          Receive an email notification whenever a new post is published
-        </CardDescription>
+        <CardTitle className="font-title">{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <SubscribeForm />
+        <SubscribeForm dictionary={subscribeForm} />
       </CardContent>
     </Card>
   );

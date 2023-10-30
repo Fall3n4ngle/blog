@@ -5,7 +5,11 @@ import { useDebounce } from "@/lib/hooks/useDebounce";
 import { useQueryParams } from "@/lib/hooks/useSearchParams";
 import { useEffect, useState } from "react";
 
-export default function Search() {
+type Props = {
+  placeholder: string;
+};
+
+export default function Search({ placeholder }: Props) {
   const { setQueryParams, queryParams } = useQueryParams<{
     name?: string;
   }>();
@@ -21,7 +25,7 @@ export default function Search() {
 
   return (
     <Input
-      placeholder="Search..."
+      placeholder={placeholder}
       className="max-w-[350px]"
       value={query}
       onChange={(e) => setQuery(e.target.value)}

@@ -19,5 +19,79 @@
         "href": "/contacts"
       }
     }
+  },
+  "home": {
+    "sort": {
+      "options": {
+        "newest": {
+          "label": "Newest",
+          "value": "createdAt:desc"
+        },
+        "oldest": {
+          "label": "Oldest",
+          "value": "createdAt:asc"
+        },
+        "a-z": {
+          "label": "A-Z",
+          "value": "name:asc"
+        },
+        "z-a": {
+          "label": "Z-A",
+          "value": "name:desc"
+        }
+      },
+      "placeholder": "Sort by..."
+    },
+    "search": {
+      "placeholder": "Search..."
+    },
+    "pagination": {
+      "prev": "prev",
+      "next": "next"
+    },
+    "subscribeCard": {
+      "title": "Subscribe",
+      "description": "Receive an email notification whenever a new post is published",
+      "subscribeForm": {
+        "label": "Your email",
+        "successMessage": "You subscribed successfully!",
+        "buttonLabel": "Submit"
+      }
+    },
+    "noPostsFound": "No posts found"
+  },
+  "post": {
+    "commentFormCard": {
+      "title": "Leave a comment",
+      "commentForm": {
+        "comment": {
+          "label": "Your comment",
+          "placeholder": "type your comment here..."
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "John Doe"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "example@gmail.com"
+        },
+        "successMessage": {
+          "title": "Your comment was submitted",
+          "description": "Your comment was submitted"
+        },
+        "errorMessage": {
+          "title": "An error occurred"
+        },
+        "buttonLabel": "Submit"
+      }
+    },
+    "commentsCard": {
+      "title": "Comments",
+      "noCommentsMessage": "No comments yet"
+    }
+  },
+  "common": {
+    "minRead": "min read"
   }
 }

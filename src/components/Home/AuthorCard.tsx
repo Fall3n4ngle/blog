@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui";
 import Image from "next/image";
+import ImageNotFound from "../ImageNotFound";
 
 type Props = Pick<Author, "attributes">;
 
@@ -10,12 +11,16 @@ export default function AuthorCard({
     <Card>
       <CardContent className="p-4">
         <div className="relative pt-[72%] mb-4">
-          <Image
-            src={process.env.CMS_URL + image.data.attributes.url}
-            alt={name}
-            fill
-            className="rounded-md object-cover"
-          />
+          {image.data?.attributes?.url ? (
+            <Image
+              src={process.env.CMS_URL + image.data.attributes.url}
+              alt={name}
+              fill
+              className="rounded-md object-cover"
+            />
+          ) : (
+            <ImageNotFound />
+          )}
         </div>
         <h3 className="font-title scroll-m-20 text-3xl font-semibold tracking-tight mb-2">
           {name}

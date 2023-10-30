@@ -48,7 +48,7 @@ export default function PostDescription({
       </div>
       <div className="flex items-center gap-3">
         {categories.data.map((category) => (
-          <Badge key={category.id} >
+          <Badge key={category.id} className="cursor-default">
             {category.attributes.name}
           </Badge>
         ))}

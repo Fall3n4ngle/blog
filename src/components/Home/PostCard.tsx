@@ -1,12 +1,6 @@
 import { Badge, Card, CardContent } from "@/components/ui";
 import Image from "next/image";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Timer,
-  CalendarDays,
-} from "lucide-react";
+import { Timer, CalendarDays } from "lucide-react";
 import { getDate } from "@/lib/utils/getDate";
 import Link from "next/link";
 import ImageNotFound from "../ImageNotFound";
@@ -19,7 +13,7 @@ type Props = Pick<Post, "attributes"> & {
 export default function PostCard({
   attributes: { categories, publishedAt, excerpt, image, name },
   readingTime,
-  id
+  id,
 }: Props) {
   const date = getDate(publishedAt);
 
@@ -41,7 +35,9 @@ export default function PostCard({
               )}
               <div className="absolute bottom-3 left-3 flex items-center gap-3">
                 {categories.data.map((category) => (
-                  <Badge key={category.id}>{category.attributes.name}</Badge>
+                  <Badge key={category.id} className="cursor-default">
+                    {category.attributes.name}
+                  </Badge>
                 ))}
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
 import { client } from "./client";
+import { Locale } from "../i18n/i18n-config";
 
 type GetHomePageDataReturnType = {
   categories: {
@@ -10,10 +11,10 @@ type GetHomePageDataReturnType = {
   };
 };
 
-export const getHomePageData = async () => {
+export const getHomePageData = async (locale: Locale) => {
   const query = gql`
     query {
-      categories {
+      categories(locale: "${locale}") {
         data {
           id
           attributes {
@@ -23,7 +24,7 @@ export const getHomePageData = async () => {
         }
       }
 
-      author {
+      author(locale: "${locale}") {
         data {
           id
           attributes {

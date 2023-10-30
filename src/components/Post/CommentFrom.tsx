@@ -8,9 +8,41 @@ import { comment } from "@/lib/actions/comment";
 
 type Props = {
   postId: string;
+  dictionary: {
+    comment: {
+      label: string;
+      placeholder: string;
+    };
+    name: {
+      label: string;
+      placeholder: string;
+    };
+    email: {
+      label: string;
+      placeholder: string;
+    };
+    successMessage: {
+      title: string;
+      description: string;
+    };
+    errorMessage: {
+      title: string;
+    };
+    buttonLabel: string;
+  };
 };
 
-export default function CommentFrom({ postId }: Props) {
+export default function CommentFrom({
+  postId,
+  dictionary: {
+    comment: commentDictionary,
+    email,
+    errorMessage,
+    name,
+    successMessage,
+    buttonLabel
+  },
+}: Props) {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
@@ -19,12 +51,12 @@ export default function CommentFrom({ postId }: Props) {
       await comment(data, postId);
 
       toast({
-        title: "Your comment was submitted",
-        description: "It will appear when the author approves it",
+        title: successMessage.title,
+        description: successMessage.description,
       });
     } catch (error: any) {
       toast({
-        description: error?.message ?? "An error occurred",
+        description: error?.message ?? errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -36,11 +68,11 @@ export default function CommentFrom({ postId }: Props) {
     <form ref={formRef} action={handleSubmit}>
       <div className="mb-4">
         <Label htmlFor="comment" className="mb-2 block">
-          Your comment
+          {commentDictionary.label}
         </Label>
         <Textarea
           id="comment"
-          placeholder="type your comment here..."
+          placeholder={commentDictionary.placeholder}
           name="content"
           required
           rows={10}
@@ -49,31 +81,31 @@ export default function CommentFrom({ postId }: Props) {
       <div className="flex items-center flex-wrap sm:flex-nowrap gap-4 mb-6">
         <div className="basis-full sm:basis1/2">
           <Label htmlFor="name" className="mb-2 block">
-            Name
+            {name.label}
           </Label>
           <Input
             id="name"
             name="name"
-            placeholder="John Doe"
+            placeholder={name.placeholder}
             required
             className="block"
           />
         </div>
         <div className="basis-full sm:basis1/2">
           <Label htmlFor="email" className="mb-2 block">
-            Email
+            {email.label}
           </Label>
           <Input
             id="email"
             name="email"
             type="email"
-            placeholder="example@gmail.com"
+            placeholder={email.placeholder}
             required
             className="block"
           />
         </div>
       </div>
-      <FormButton>Submit</FormButton>
+      <FormButton>{buttonLabel}</FormButton>
     </form>
   );
 }

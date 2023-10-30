@@ -6,9 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {
   totalPages: number;
+  dictionary: {
+    prev: string;
+    next: string;
+  };
 };
 
-export default function Pagination({ totalPages }: Props) {
+export default function Pagination({ totalPages, dictionary }: Props) {
   const { queryParams, setQueryParams } = useQueryParams<{
     page?: number;
   }>();
@@ -30,7 +34,7 @@ export default function Pagination({ totalPages }: Props) {
         onClick={handlePrevClick}
         disabled={+currentPage === 1}
       >
-        <ChevronLeft className="mr-2 h-5 w-5" /> Prev
+        <ChevronLeft className="mr-2 h-5 w-5" /> {dictionary.prev}
       </Button>
       <span>
         {currentPage} of {totalPages}
@@ -40,7 +44,7 @@ export default function Pagination({ totalPages }: Props) {
         onClick={handleNextClick}
         disabled={+currentPage === totalPages}
       >
-        Next <ChevronRight className="ml-2 h-5 w-5" />
+        {dictionary.next} <ChevronRight className="ml-2 h-5 w-5" />
       </Button>
     </div>
   );

@@ -7,7 +7,17 @@ import SubscribeFormButton from "../FormButton";
 import { useToast } from "@/lib/hooks/useToast";
 import { Check } from "lucide-react";
 
-export default function SubscribeForm() {
+type Props = {
+  dictionary: {
+    label: string;
+    successMessage: string;
+    buttonLabel: string;
+  };
+};
+
+export default function SubscribeForm({
+  dictionary: { label, successMessage, buttonLabel },
+}: Props) {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
@@ -21,7 +31,7 @@ export default function SubscribeForm() {
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
               <Check className="h-5 w-5 text-[#f8f8f7]" />
             </div>
-            You subscribed successfully!
+            {successMessage}
           </div>
         ),
       });
@@ -37,7 +47,7 @@ export default function SubscribeForm() {
 
   return (
     <form action={handleSubmit} ref={formRef} className="flex flex-col gap-3">
-      <Label htmlFor="email">Your email</Label>
+      <Label htmlFor="email">{label}</Label>
       <Input
         placeholder="example@gmail.com"
         type="email"
@@ -45,7 +55,7 @@ export default function SubscribeForm() {
         name="email"
         required
       />
-      <SubscribeFormButton />
+      <SubscribeFormButton>{buttonLabel}</SubscribeFormButton>
     </form>
   );
 }

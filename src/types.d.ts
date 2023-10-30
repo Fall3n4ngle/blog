@@ -8,7 +8,7 @@ type Author = {
       data: {
         attributes: {
           url: string;
-        };
+        } | null;
       };
     };
   };

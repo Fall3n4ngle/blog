@@ -19,5 +19,79 @@
         "href": "/contacts"
       }
     }
+  },
+  "home": {
+    "sort": {
+      "options": {
+        "newest": {
+          "label": "Más reciente",
+          "value": "createdAt:desc"
+        },
+        "oldest": {
+          "label": "Más antiguo",
+          "value": "createdAt:desc"
+        },
+        "a-z": {
+          "label": "A-Z",
+          "value": "name:asc"
+        },
+        "z-a": {
+          "label": "Z-A",
+          "value": "name:desc"
+        }
+      },
+      "placeholder": "Ordenar por..."
+    },
+    "search": {
+      "placeholder": "Buscar..."
+    },
+    "pagination": {
+      "prev": "anterior",
+      "next": "siguiente"
+    },
+    "subscribeCard": {
+      "title": "Suscribirse",
+      "description": "Recibe una notificación por correo electrónico cada vez que se publique una nueva publicación",
+      "subscribeForm": {
+        "label": "Tu correo electrónico",
+        "successMessage": "¡Te has suscrito con éxito!",
+        "buttonLabel": "Enviar"
+      }
+    },
+    "noPostsFound": "No se encontraron publicaciones"
+  },
+  "post": {
+    "commentFormCard": {
+      "title": "Dejar un comentario",
+      "commentForm": {
+        "comment": {
+          "label": "Tu comentario",
+          "placeholder": "escribe tu comentario aquí..."
+        },
+        "name": {
+          "label": "Nombre",
+          "placeholder": "Juan Pérez"
+        },
+        "email": {
+          "label": "Correo electrónico",
+          "placeholder": "ejemplo@gmail.com"
+        },
+        "successMessage": {
+          "title": "Tu comentario ha sido enviado",
+          "description": "Tu comentario ha sido enviado"
+        },
+        "errorMessage": {
+          "title": "Ha ocurrido un error"
+        },
+        "buttonLabel": "Enviar"
+      }
+    },
+    "commentsCard": {
+      "title": "Comments",
+      "noCommentsMessage": "Aún no hay comentarios"
+    }
+  },
+  "common": {
+    "minRead": "min de lectura"
   }
 }

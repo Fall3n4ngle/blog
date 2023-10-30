@@ -20,7 +20,11 @@ export default async function Header({ lang }: Props) {
       <div className="container flex items-center justify-between">
         <Logo />
         <div className="hidden sm:block">
-          <Navigation dictionary={navigation} orientation="horizontal" />
+          <Navigation
+            dictionary={navigation}
+            lang={lang}
+            orientation="horizontal"
+          />
         </div>
         <div className="flex items-center gap-2.5">
           <div className="sm:hidden">

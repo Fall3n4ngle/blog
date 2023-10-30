@@ -5,6 +5,7 @@ import { isActiveLink } from "@/lib/utils/isActiveLink";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SheetClose } from "../ui";
+import { Locale } from "@/lib/i18n/i18n-config";
 
 type Props = {
   dictionary: Record<
@@ -15,9 +16,10 @@ type Props = {
     }
   >;
   orientation: "horizontal" | "vertical";
+  lang: Locale;
 };
 
-export default function Navigation({ dictionary, orientation }: Props) {
+export default function Navigation({ dictionary, orientation, lang }: Props) {
   const pathname = usePathname();
 
   return (
@@ -34,6 +36,8 @@ export default function Navigation({ dictionary, orientation }: Props) {
           const { href, label } = dictionary[item];
           const active = isActiveLink(href, pathname);
 
+          const link = `/${lang}/${href}`
+
           return (
             <li
               key={href}
@@ -43,10 +47,10 @@ export default function Navigation({ dictionary, orientation }: Props) {
               )}
             >
               {orientation === "horizontal" ? (
-                <Link href={href}>{label}</Link>
+                <Link href={link}>{label}</Link>
               ) : (
                 <SheetClose asChild>
-                  <Link href={href}>{label}</Link>
+                  <Link href={link}>{label}</Link>
                 </SheetClose>
               )}
             </li>

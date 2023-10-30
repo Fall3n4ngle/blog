@@ -9,26 +9,17 @@ import {
 } from "@/components/ui";
 import { useQueryParams } from "@/lib/hooks/useSearchParams";
 
-const sortOptions = [
-  {
-    label: "Newest",
-    value: "createdAt:desc",
-  },
-  {
-    label: "Oldest",
-    value: "createdAt:asc",
-  },
-  {
-    label: "A-Z",
-    value: "name:asc",
-  },
-  {
-    label: "Z-A",
-    value: "name:desc",
-  },
-];
+type Option = {
+  label: string;
+  value: string;
+};
 
-export default function Sort() {
+type Props = {
+  options: Record<string, Option>;
+  placeholder: string;
+};
+
+export default function Sort({ options, placeholder }: Props) {
   const { setQueryParams, queryParams } = useQueryParams<{
     sort?: string;
   }>();
@@ -43,14 +34,18 @@ export default function Sort() {
       defaultValue={queryParams.get("sort") ?? ""}
     >
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Sort by..." />
+        <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
-        {sortOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
+        {Object.keys(options).map((item) => {
+          const { label, value } = options[item];
+
+          return (
+            <SelectItem key={value} value={value}>
+              {label}
+            </SelectItem>
+          );
+        })}
       </SelectContent>
     </Select>
   );

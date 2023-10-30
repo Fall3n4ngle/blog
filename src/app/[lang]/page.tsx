@@ -9,9 +9,9 @@ import {
 } from "@/components/Home";
 import { getPosts } from "@/lib/api/getPosts";
 import { getHomePageData } from "@/lib/api/gethomePageData";
-import { Locale, i18n } from "@/lib/i18n/i18n-config";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { Locale } from "@/lib/i18n/i18n-config";
 import { formatCategory } from "@/lib/utils/formatCategory";
-import { Metadata } from "next";
 import readingTime from "reading-time";
 
 type Props = {
@@ -48,38 +48,51 @@ export default async function Home({
     locale: lang,
   });
 
-  const { author, categories } = await getHomePageData();
+  const { author, categories } = await getHomePageData(lang);
+
+  const {
+    home: {
+      sort: { options, placeholder: sortPlaceholder },
+      search: { placeholder: searchPlaceholder },
+      pagination,
+      subscribeCard,
+      noPostsFound
+    },
+    common: { minRead },
+  } = await getDictionary(lang);
 
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
-        <Search />
-        <Sort />
+        <Search placeholder={searchPlaceholder} />
+        <Sort options={options} placeholder={sortPlaceholder} />
       </div>
       <div className="mb-6">
         <Filter categories={categories} />
       </div>
       <div className="grid grid-cols-7 gap-4 mb-6">
         <div className="col-span-7 lg:col-span-5 flex flex-col gap-6">
-          {posts.map((post) => {
-            const { text } = readingTime(post.attributes.content ?? "");
+          {posts.length > 0 ? posts.map((post) => {
+            const { minutes } = readingTime(post.attributes.content ?? "");
 
             return (
               <PostCard
                 key={post.id}
                 attributes={post.attributes}
-                readingTime={text}
+                readingTime={`${Math.round(minutes)} ${minRead}`}
                 id={post.id}
               />
             );
-          })}
+          }) : noPostsFound}
         </div>
         <div className="col-span-2 hidden lg:flex flex-col gap-6">
           <AuthorCard attributes={author.attributes} />
-          <SubscribeCard />
+          <SubscribeCard dictionary={subscribeCard} />
         </div>
       </div>
-      {pageCount > 1 ? <Pagination totalPages={pageCount} /> : null}
+      {pageCount > 1 ? (
+        <Pagination totalPages={pageCount} dictionary={pagination} />
+      ) : null}
     </>
   );
 }
