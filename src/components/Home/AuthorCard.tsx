@@ -10,7 +10,7 @@ export default function AuthorCard({
   return (
     <Card>
       <CardContent className="p-4">
-        <div className="relative pt-[72%] mb-4">
+        <div className="relative pt-[75%] md:pt-[65%] lg:pt-[75%] mb-4">
           {image.data?.attributes?.url ? (
             <Image
               src={process.env.CMS_URL + image.data.attributes.url}

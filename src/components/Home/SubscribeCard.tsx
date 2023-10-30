@@ -23,7 +23,7 @@ export default function SubscribeCard({
   dictionary: { description, subscribeForm, title },
 }: Props) {
   return (
-    <Card>
+    <Card className="min-w-[280px]">
       <CardHeader>
         <CardTitle className="font-title">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

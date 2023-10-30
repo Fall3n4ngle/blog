@@ -11,7 +11,7 @@ type Author = {
         } | null;
       };
     };
-  };
+  }
 };
 
 type Category = {

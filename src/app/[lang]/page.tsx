@@ -56,7 +56,7 @@ export default async function Home({
       search: { placeholder: searchPlaceholder },
       pagination,
       subscribeCard,
-      noPostsFound
+      noPostsFound,
     },
     common: { minRead },
   } = await getDictionary(lang);
@@ -70,29 +70,39 @@ export default async function Home({
       <div className="mb-6">
         <Filter categories={categories} />
       </div>
-      <div className="grid grid-cols-7 gap-4 mb-6">
-        <div className="col-span-7 lg:col-span-5 flex flex-col gap-6">
-          {posts.length > 0 ? posts.map((post) => {
-            const { minutes } = readingTime(post.attributes.content ?? "");
+      <div className="grid grid-cols-7 gap-6">
+        <div className="col-span-7 lg:col-span-5 ">
+          <div className="flex flex-col gap-6">
+            {posts.length > 0
+              ? posts.map((post) => {
+                  const { minutes } = readingTime(
+                    post.attributes.content ?? ""
+                  );
 
-            return (
-              <PostCard
-                key={post.id}
-                attributes={post.attributes}
-                readingTime={`${Math.round(minutes)} ${minRead}`}
-                id={post.id}
-              />
-            );
-          }) : noPostsFound}
+                  return (
+                    <PostCard
+                      key={post.id}
+                      attributes={post.attributes}
+                      readingTime={`${Math.round(minutes)} ${minRead}`}
+                      id={post.id}
+                    />
+                  );
+                })
+              : noPostsFound}
+          </div>
         </div>
-        <div className="col-span-2 hidden lg:flex flex-col gap-6">
-          <AuthorCard attributes={author.attributes} />
+        <div className="col-span-7 lg:order-3">
+          {pageCount > 1 ? (
+            <Pagination totalPages={pageCount} dictionary={pagination} />
+          ) : null}
+        </div>
+        <div className="col-span-7 lg:col-span-2 flex gap-6 flex-col sm:flex-row sm:items-start lg:flex-col">
+          {author?.attributes ? (
+            <AuthorCard attributes={author.attributes} />
+          ) : null}
           <SubscribeCard dictionary={subscribeCard} />
         </div>
       </div>
-      {pageCount > 1 ? (
-        <Pagination totalPages={pageCount} dictionary={pagination} />
-      ) : null}
     </>
   );
 }

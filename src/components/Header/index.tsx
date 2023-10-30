@@ -3,8 +3,6 @@ import LocaleSwitcher from "./LocaleSwitcher";
 import Logo from "./Logo";
 import ModeToggle from "./ModeToggle";
 import { getDictionary } from "@/lib/i18n/getDictionary";
-import Navigation from "./Navigation";
-import SidebarNavigation from "./SidebarNavigation";
 
 type Props = {
   lang: Locale;
@@ -12,24 +10,14 @@ type Props = {
 
 export default async function Header({ lang }: Props) {
   const {
-    header: { modeToggle, navigation },
+    header: { modeToggle },
   } = await getDictionary(lang);
 
   return (
     <header className="py-4 sticky top-0 z-50 bg-background">
       <div className="container flex items-center justify-between">
         <Logo />
-        <div className="hidden sm:block">
-          <Navigation
-            dictionary={navigation}
-            lang={lang}
-            orientation="horizontal"
-          />
-        </div>
         <div className="flex items-center gap-2.5">
-          <div className="sm:hidden">
-            <SidebarNavigation dictionary={navigation} />
-          </div>
           <LocaleSwitcher />
           <ModeToggle dictionary={modeToggle} />
         </div>
