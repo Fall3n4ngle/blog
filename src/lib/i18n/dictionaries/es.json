@@ -4,6 +4,20 @@
       "light": "Ligera",
       "dark": "Oscura",
       "system": "Sistema"
+    },
+    "navigation": {
+      "home": {
+        "label": "Hogar",
+        "href": "/"
+      },
+      "about": {
+        "label": "Acerca",
+        "href": "/about"
+      },
+      "contacts": {
+        "label": "Contactos",
+        "href": "/contacts"
+      }
     }
   }
 }

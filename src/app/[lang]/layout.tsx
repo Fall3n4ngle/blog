@@ -3,7 +3,6 @@ import Providers from "@/providers";
 import { PropsWithChildren } from "react";
 import Header from "@/components/Header";
 import { Locale, i18n } from "@/lib/i18n/i18n-config";
-import { Metadata } from "next";
 
 import "../globals.css";
 
