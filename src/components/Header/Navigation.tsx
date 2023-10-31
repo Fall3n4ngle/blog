@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils/cn";
 import { isActiveLink } from "@/lib/utils/isActiveLink";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SheetClose } from "../ui";
 import { Locale } from "@/lib/i18n/i18n-config";
 
 type Props = {
@@ -36,7 +35,7 @@ export default function Navigation({ dictionary, orientation, lang }: Props) {
           const { href, label } = dictionary[item];
           const active = isActiveLink(href, pathname);
 
-          const link = `/${lang}/${href}`
+          const link = `/${lang}/${href}`;
 
           return (
             <li
@@ -49,9 +48,7 @@ export default function Navigation({ dictionary, orientation, lang }: Props) {
               {orientation === "horizontal" ? (
                 <Link href={link}>{label}</Link>
               ) : (
-                <SheetClose asChild>
-                  <Link href={link}>{label}</Link>
-                </SheetClose>
+                <Link href={link}>{label}</Link>
               )}
             </li>
           );

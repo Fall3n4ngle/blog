@@ -5,6 +5,9 @@ type GetPostsMetaReturnType = {
   posts: {
     data: {
       id: string;
+      attributes: {
+        updatedAt: string;
+      };
     }[];
   };
 };
@@ -15,6 +18,9 @@ export const getPostsMeta = async () => {
       posts {
         data {
           id
+          attributes {
+            updatedAt
+          }
         }
       }
     }

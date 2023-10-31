@@ -3,6 +3,8 @@ import Providers from "@/providers";
 import { PropsWithChildren } from "react";
 import Header from "@/components/Header";
 import { Locale, i18n } from "@/lib/i18n/i18n-config";
+import { Metadata } from "next";
+import { metadata } from "@/lib/metadata";
 
 import "../globals.css";
 
@@ -46,4 +48,51 @@ export default function RootLayout({ children, params: { lang } }: Props) {
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
+export function generateMetadata({ params: { lang } }: Props) {
+  let languages: Record<string, string> = {};
+  i18n.locales.forEach((locale) => {
+    languages[locale] = `${metadata.siteUrl}${locale}`;
+  });
+
+  return {
+    metadataBase: metadata.siteUrl,
+    title: {
+      template: `%s | ${metadata.title}`,
+      default: metadata.title,
+    },
+    description: metadata.description,
+    keywords: metadata.keywords,
+    alternates: {
+      canonical: metadata.siteUrl,
+      languages,
+    },
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: metadata.siteUrl,
+      siteName: metadata.title,
+      images: [metadata.socialBanner],
+      locale: lang,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+      images: [metadata.socialBanner],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+  } as Metadata;
 }

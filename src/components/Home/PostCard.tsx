@@ -35,7 +35,7 @@ export default function PostCard({
               )}
               <div className="absolute bottom-3 left-3 flex items-center gap-3">
                 {categories.data.map((category) => (
-                  <Badge key={category.id} className="cursor-default">
+                  <Badge key={category.id} className="cursor-default hover:bg-primary">
                     {category.attributes.name}
                   </Badge>
                 ))}

@@ -2,6 +2,7 @@ import { CalendarDays, Timer } from "lucide-react";
 import { Badge } from "@/components/ui";
 import ImageNotFound from "../ImageNotFound";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   image: Post["attributes"]["image"];
@@ -48,9 +49,12 @@ export default function PostDescription({
       </div>
       <div className="flex items-center gap-3">
         {categories.data.map((category) => (
-          <Badge key={category.id} className="cursor-default">
-            {category.attributes.name}
-          </Badge>
+          <Link
+            key={category.id}
+            href={`/?category=${category.attributes.slug}`}
+          >
+            <Badge>{category.attributes.name}</Badge>
+          </Link>
         ))}
       </div>
     </>

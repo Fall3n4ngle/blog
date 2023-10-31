@@ -39,6 +39,7 @@ type Post = {
       }[];
     };
     publishedAt: string;
+    updatedAt: string;
     categories: {
       data: Category[];
     };

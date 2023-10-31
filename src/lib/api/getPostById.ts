@@ -33,6 +33,7 @@ export const getPostById = cache(async ({ id, locale = "en" }: Props) => {
             }
             name
             publishedAt
+            updatedAt
             content
             excerpt
             categories {
