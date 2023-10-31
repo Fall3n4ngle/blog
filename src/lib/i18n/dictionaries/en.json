@@ -4,6 +4,20 @@
       "light": "light",
       "dark": "dark",
       "system": "system"
+    },
+    "navigation": {
+      "home": {
+        "label": "Home",
+        "href": "/"
+      },
+      "about": {
+        "label": "About",
+        "href": "/about"
+      },
+      "contacts": {
+        "label": "Contacts",
+        "href": "/contacts"
+      }
     }
   },
   "home": {

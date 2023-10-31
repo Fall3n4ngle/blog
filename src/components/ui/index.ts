@@ -7,3 +7,4 @@ export * from "./Select";
 export * from "./Label";
 export * from "./Toast";
 export * from "./Textarea";
+export * from "./Sheet";

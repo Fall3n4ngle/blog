@@ -11,8 +11,6 @@ import {
   DropdownMenuTrigger,
   Button,
 } from "@/components/ui";
-import { Locale } from "@/lib/i18n/i18n-config";
-import { getDictionary } from "@/lib/i18n/getDictionary";
 
 type Props = {
   dictionary: {

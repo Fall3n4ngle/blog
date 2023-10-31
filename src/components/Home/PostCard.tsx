@@ -10,7 +10,7 @@ type Props = Pick<Post, "attributes"> & {
   id: string;
 };
 
-export default function PostCard({
+export default async function PostCard({
   attributes: { categories, publishedAt, excerpt, image, name },
   readingTime,
   id,
@@ -35,7 +35,10 @@ export default function PostCard({
               )}
               <div className="absolute bottom-3 left-3 flex items-center gap-3">
                 {categories.data.map((category) => (
-                  <Badge key={category.id} className="cursor-default hover:bg-primary">
+                  <Badge
+                    key={category.id}
+                    className="cursor-default hover:bg-primary"
+                  >
                     {category.attributes.name}
                   </Badge>
                 ))}
