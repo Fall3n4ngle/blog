@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import CommentForm from "./CommentFrom";
+import FeedbackForm from "./FeedbackForm";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui";
 
 type Props = {
-  postId: string;
+  action: (data: FormData) => Promise<void>;
   dictionary: {
     title: string;
-    commentForm: {
+    form: {
       comment: {
         label: string;
         placeholder: string;
@@ -30,9 +30,9 @@ type Props = {
   };
 };
 
-export default function CommentFormCard({
-  postId,
-  dictionary: { commentForm, title },
+export default function FeedbackFormCard({
+  dictionary: { title, form },
+  action,
 }: Props) {
   return (
     <Card>
@@ -40,7 +40,7 @@ export default function CommentFormCard({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <CommentForm postId={postId} dictionary={commentForm} />
+        <FeedbackForm action={action} dictionary={form} />
       </CardContent>
     </Card>
   );

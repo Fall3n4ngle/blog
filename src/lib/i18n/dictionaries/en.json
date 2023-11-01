@@ -63,7 +63,7 @@
   "post": {
     "commentFormCard": {
       "title": "Leave a comment",
-      "commentForm": {
+      "form": {
         "comment": {
           "label": "Your comment",
           "placeholder": "type your comment here..."
@@ -89,6 +89,33 @@
     "commentsCard": {
       "title": "Comments",
       "noCommentsMessage": "No comments yet"
+    }
+  },
+  "contacts": {
+    "contactForm": {
+      "title": "Contact me",
+      "form": {
+        "comment": {
+          "label": "Your message",
+          "placeholder": "type your message here..."
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "John Doe"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "example@gmail.com"
+        },
+        "successMessage": {
+          "title": "Your message was sent",
+          "description": "Wait for the reply"
+        },
+        "errorMessage": {
+          "title": "An error occurred"
+        },
+        "buttonLabel": "Submit"
+      }
     }
   },
   "common": {

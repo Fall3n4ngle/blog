@@ -1,9 +1,7 @@
-import {
-  CommentFormCard,
-  CommentsCard,
-  PostDescription,
-} from "@/components/Post";
+import FeedbackFormCard from "@/components/FeedbackFormCard";
+import { CommentsCard, PostDescription } from "@/components/Post";
 import ShareButtons from "@/components/Post/ShareButtons";
+import { comment } from "@/lib/actions/comment";
 import { getPostById, getPostsMeta } from "@/lib/api";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { Locale, i18n } from "@/lib/i18n/i18n-config";
@@ -42,6 +40,12 @@ export default async function Post({ params: { lang, id } }: Props) {
     common: { minRead },
   } = await getDictionary(lang);
 
+  const action = async (data: FormData) => {
+    "use server";
+
+    await comment(data, id);
+  };
+
   return (
     <div className="secondary-container">
       <div className="mb-4">
@@ -62,7 +66,7 @@ export default async function Post({ params: { lang, id } }: Props) {
         className="markdown mb-12"
       />
       <div className="mb-12">
-        <CommentFormCard postId={id} dictionary={commentFormCard} />
+        <FeedbackFormCard dictionary={commentFormCard} action={action} />
       </div>
       <CommentsCard
         comments={comments.data}
@@ -97,7 +101,7 @@ export async function generateMetadata({ params: { lang, id } }: Props) {
 
   const keywords = categories.data.map((category) => category.attributes.slug);
 
-  const ogImage = image.data[0]?.attributes?.url ?? metadata.socialBanner
+  const ogImage = image.data[0]?.attributes?.url ?? metadata.socialBanner;
 
   return {
     title: name,
@@ -116,13 +120,13 @@ export async function generateMetadata({ params: { lang, id } }: Props) {
       type: "article",
       publishedTime: publishedAt,
       modifiedTime: updatedAt,
-      images: [ogImage]
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: name,
       description: excerpt,
-      images: [ogImage]
-    }
+      images: [ogImage],
+    },
   } as Metadata;
 }

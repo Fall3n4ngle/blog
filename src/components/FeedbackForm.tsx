@@ -4,10 +4,9 @@ import { Input, Label, Textarea } from "@/components/ui";
 import { useRef } from "react";
 import FormButton from "@/components/FormButton";
 import { useToast } from "@/lib/hooks/useToast";
-import { comment } from "@/lib/actions/comment";
 
 type Props = {
-  postId: string;
+  action: (data: FormData) => Promise<void>;
   dictionary: {
     comment: {
       label: string;
@@ -32,8 +31,8 @@ type Props = {
   };
 };
 
-export default function CommentFrom({
-  postId,
+export default function FeedbackForm({
+  action,
   dictionary: {
     comment: commentDictionary,
     email,
@@ -48,7 +47,7 @@ export default function CommentFrom({
 
   const handleSubmit = async (data: FormData) => {
     try {
-      await comment(data, postId);
+      await action(data);
 
       toast({
         title: successMessage.title,

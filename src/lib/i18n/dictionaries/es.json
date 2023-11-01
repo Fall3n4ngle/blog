@@ -63,7 +63,7 @@
   "post": {
     "commentFormCard": {
       "title": "Dejar un comentario",
-      "commentForm": {
+      "form": {
         "comment": {
           "label": "Tu comentario",
           "placeholder": "escribe tu comentario aquí..."
@@ -89,6 +89,33 @@
     "commentsCard": {
       "title": "Comments",
       "noCommentsMessage": "Aún no hay comentarios"
+    }
+  },
+  "contacts": {
+    "contactForm": {
+      "title": "Contáctame",
+      "form": {
+        "comment": {
+          "label": "Tu mensaje",
+          "placeholder": "escribe tu mensaje aquí..."
+        },
+        "name": {
+          "label": "Nombre",
+          "placeholder": "Juan Pérez"
+        },
+        "email": {
+          "label": "Correo electrónico",
+          "placeholder": "ejemplo@gmail.com"
+        },
+        "successMessage": {
+          "title": "Tu mensaje ha sido enviado",
+          "description": "Espera la respuesta"
+        },
+        "errorMessage": {
+          "title": "Se ha producido un error"
+        },
+        "buttonLabel": "Enviar"
+      }
     }
   },
   "common": {
