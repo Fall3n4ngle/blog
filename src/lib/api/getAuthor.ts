@@ -1,29 +1,17 @@
 import { gql } from "graphql-request";
-import { client } from "./client";
 import { Locale } from "../i18n/i18n-config";
+import { client } from "../client";
+import { cache } from "react";
 
 type GetHomePageDataReturnType = {
-  categories: {
-    data: Category[];
-  };
   author: {
     data: Author;
   };
 };
 
-export const getHomePageData = async (locale: Locale) => {
+export const getAuthor = cache(async (locale: Locale) => {
   const query = gql`
     query {
-      categories(locale: "${locale}") {
-        data {
-          id
-          attributes {
-            name
-            slug
-          }
-        }
-      }
-
       author(locale: "${locale}") {
         data {
           id
@@ -31,6 +19,7 @@ export const getHomePageData = async (locale: Locale) => {
             name
             bio
             position
+            about
             image {
               data {
                 attributes {
@@ -42,13 +31,10 @@ export const getHomePageData = async (locale: Locale) => {
         }
       }
     }
-  `;
+    `;
 
   const {
-    author: { data: author },
-    categories: { data: categories },
+    author: { data },
   }: GetHomePageDataReturnType = await client.request(query);
-
-  return { author, categories };
-};
-
+  return data;
+});

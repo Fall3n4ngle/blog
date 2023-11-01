@@ -4,8 +4,7 @@ import {
   PostDescription,
 } from "@/components/Post";
 import ShareButtons from "@/components/Post/ShareButtons";
-import { getPostById } from "@/lib/api/getPostById";
-import { getPostsMeta } from "@/lib/api/getPostsMeta";
+import { getPostById, getPostsMeta } from "@/lib/api";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { Locale, i18n } from "@/lib/i18n/i18n-config";
 import { metadata } from "@/lib/metadata";
@@ -44,7 +43,7 @@ export default async function Post({ params: { lang, id } }: Props) {
   } = await getDictionary(lang);
 
   return (
-    <div className="max-w-[700px] mx-auto">
+    <div className="secondary-container">
       <div className="mb-4">
         <PostDescription
           categories={categories}
@@ -60,7 +59,7 @@ export default async function Post({ params: { lang, id } }: Props) {
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: parsedContent }}
-        className="post-content mb-12"
+        className="markdown mb-12"
       />
       <div className="mb-12">
         <CommentFormCard postId={id} dictionary={commentFormCard} />

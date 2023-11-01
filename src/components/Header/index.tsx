@@ -17,7 +17,7 @@ export default async function Header({ lang }: Props) {
 
   return (
     <header className="py-4 sticky top-0 z-50 bg-background">
-      <div className="container flex items-center justify-between">
+      <div className="main-container flex items-center justify-between">
         <Logo />
         <div className="hidden sm:block">
           <Navigation

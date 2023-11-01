@@ -38,7 +38,7 @@ export default function RootLayout({ children, params: { lang } }: Props) {
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Header lang={lang} />
-            <main className="container grow pb-8 pt-3">{children}</main>
+            <main className="grow">{children}</main>
           </div>
         </Providers>
       </body>

@@ -7,8 +7,7 @@ import {
   Sort,
   SubscribeCard,
 } from "@/components/Home";
-import { getPosts } from "@/lib/api/getPosts";
-import { getHomePageData } from "@/lib/api/gethomePageData";
+import { getAuthor, getCategories, getPosts } from "@/lib/api";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { formatCategory } from "@/lib/utils/formatCategory";
@@ -48,7 +47,8 @@ export default async function Home({
     locale: lang,
   });
 
-  const { author, categories } = await getHomePageData(lang);
+  const author = await getAuthor(lang);
+  const categories = await getCategories(lang);
 
   const {
     home: {
@@ -62,7 +62,7 @@ export default async function Home({
   } = await getDictionary(lang);
 
   return (
-    <>
+    <div className="main-container pb-8 pt-3">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
         <Search placeholder={searchPlaceholder} />
         <Sort options={options} placeholder={sortPlaceholder} />
@@ -103,6 +103,6 @@ export default async function Home({
           <SubscribeCard dictionary={subscribeCard} />
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { client } from "./client";
+import { client } from "../client";
 import { Locale } from "../i18n/i18n-config";
 import { cache } from "react";
 

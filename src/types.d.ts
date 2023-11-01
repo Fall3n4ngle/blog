@@ -4,6 +4,7 @@ type Author = {
     name: string;
     bio: string;
     position: string;
+    about?: string | null;
     image: {
       data: {
         attributes: {
@@ -11,7 +12,7 @@ type Author = {
         } | null;
       };
     };
-  }
+  };
 };
 
 type Category = {
