@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import ImageNotFound from "../ImageNotFound";
+import { ImageNotFound } from "@/components/common";
 
 type Props = {
   image: Author["attributes"]["image"];

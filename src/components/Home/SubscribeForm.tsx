@@ -3,9 +3,8 @@
 import { Input, Label } from "@/components/ui";
 import { subscribe } from "@/lib/actions/subscribe";
 import { useRef } from "react";
-import SubscribeFormButton from "../FormButton";
+import { FormButton, SuccessMessage, ErrorMessage } from "@/components/common";
 import { useToast } from "@/lib/hooks/useToast";
-import { Check } from "lucide-react";
 
 type Props = {
   dictionary: {
@@ -22,18 +21,11 @@ export default function SubscribeForm({
   const { toast } = useToast();
 
   const handleSubmit = async (formData: FormData) => {
-    const result = await subscribe(formData);
+    const { success, error } = await subscribe(formData);
 
-    if (result.success) {
+    if (success) {
       toast({
-        description: (
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-              <Check className="h-5 w-5 text-[#f8f8f7]" />
-            </div>
-            {successMessage}
-          </div>
-        ),
+        description: <SuccessMessage message={successMessage} />,
       });
 
       formRef.current?.reset();
@@ -41,7 +33,7 @@ export default function SubscribeForm({
     }
 
     toast({
-      description: result.error,
+      description: <ErrorMessage message={error ?? "An error occurred"} />,
       variant: "destructive",
     });
   };
@@ -56,7 +48,7 @@ export default function SubscribeForm({
         name="email"
         required
       />
-      <SubscribeFormButton>{buttonLabel}</SubscribeFormButton>
+      <FormButton>{buttonLabel}</FormButton>
     </form>
   );
 }

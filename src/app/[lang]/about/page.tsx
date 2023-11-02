@@ -1,10 +1,8 @@
 import AboutHeading from "@/components/About/AboutHeading";
-import ImageNotFound from "@/components/ImageNotFound";
 import { getAuthor } from "@/lib/api/getAuthor";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { markdownToHtml } from "@/lib/utils/markdownToHtml";
 import { Metadata } from "next";
-import Image from "next/image";
 
 type Props = {
   params: {

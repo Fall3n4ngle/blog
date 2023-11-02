@@ -1,4 +1,4 @@
-import FeedbackFormCard from "@/components/FeedbackFormCard";
+import { FeedbackFormCard } from "@/components/common";
 import { CommentsCard, PostHeading } from "@/components/Post";
 import ShareButtons from "@/components/Post/ShareButtons";
 import { comment } from "@/lib/actions/comment";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, ButtonProps } from "@/components/ui";
 import { Loader2 } from "lucide-react";
 

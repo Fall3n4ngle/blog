@@ -1,6 +1,6 @@
 import { CalendarDays, Timer } from "lucide-react";
 import { Badge } from "@/components/ui";
-import ImageNotFound from "../ImageNotFound";
+import { ImageNotFound } from "@/components/common";
 import Image from "next/image";
 import Link from "next/link";
 

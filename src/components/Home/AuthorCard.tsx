@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui";
 import Image from "next/image";
-import ImageNotFound from "../ImageNotFound";
+import { ImageNotFound } from "@/components/common";
 
 type Props = Pick<Author, "attributes">;
 

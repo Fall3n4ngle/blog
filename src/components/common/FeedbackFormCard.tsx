@@ -1,5 +1,5 @@
 import FeedbackForm from "./FeedbackForm";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 
 type Props = {
   action: (data: FormData) => Promise<ServerActionReturnType>;
@@ -18,13 +18,8 @@ type Props = {
         label: string;
         placeholder: string;
       };
-      successMessage: {
-        title: string;
-        description: string;
-      };
-      errorMessage: {
-        title: string;
-      };
+      successMessage: string;
+      errorMessage: string;
       buttonLabel: string;
     };
   };

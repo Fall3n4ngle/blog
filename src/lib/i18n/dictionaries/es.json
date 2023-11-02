@@ -76,13 +76,8 @@
           "label": "Correo electrónico",
           "placeholder": "ejemplo@gmail.com"
         },
-        "successMessage": {
-          "title": "Tu comentario ha sido enviado",
-          "description": "Tu comentario ha sido enviado"
-        },
-        "errorMessage": {
-          "title": "Ha ocurrido un error"
-        },
+        "successMessage": "Tu comentario ha sido enviado",
+        "errorMessage": "Ha ocurrido un error",
         "buttonLabel": "Enviar"
       }
     },
@@ -107,13 +102,8 @@
           "label": "Correo electrónico",
           "placeholder": "ejemplo@gmail.com"
         },
-        "successMessage": {
-          "title": "Tu mensaje ha sido enviado",
-          "description": "Espera la respuesta"
-        },
-        "errorMessage": {
-          "title": "Se ha producido un error"
-        },
+        "successMessage": "Tu mensaje ha sido enviado",
+        "errorMessage": "Se ha producido un error",
         "buttonLabel": "Enviar"
       }
     }

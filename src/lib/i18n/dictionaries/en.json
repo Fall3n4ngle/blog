@@ -76,13 +76,8 @@
           "label": "Email",
           "placeholder": "example@gmail.com"
         },
-        "successMessage": {
-          "title": "Your comment was submitted",
-          "description": "Your comment was submitted"
-        },
-        "errorMessage": {
-          "title": "An error occurred"
-        },
+        "successMessage": "Your comment was submitted",
+        "errorMessage": "Failed to send comment",
         "buttonLabel": "Submit"
       }
     },
@@ -107,13 +102,8 @@
           "label": "Email",
           "placeholder": "example@gmail.com"
         },
-        "successMessage": {
-          "title": "Your message was sent",
-          "description": "Wait for the reply"
-        },
-        "errorMessage": {
-          "title": "An error occurred"
-        },
+        "successMessage": "Your message was sent",
+        "errorMessage": "Failed to send message",
         "buttonLabel": "Submit"
       }
     }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Timer, CalendarDays } from "lucide-react";
 import { getDate } from "@/lib/utils/getDate";
 import Link from "next/link";
-import ImageNotFound from "../ImageNotFound";
+import { ImageNotFound } from "@/components/common";
 
 type Props = Pick<Post, "attributes"> & {
   readingTime: string;

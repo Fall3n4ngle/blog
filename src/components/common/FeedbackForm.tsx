@@ -2,8 +2,9 @@
 
 import { Input, Label, Textarea } from "@/components/ui";
 import { useRef } from "react";
-import FormButton from "@/components/FormButton";
+import FormButton from "./FormButton";
 import { useToast } from "@/lib/hooks/useToast";
+import SuccessMessage from "./SuccessMessage";
 
 type Props = {
   action: (data: FormData) => Promise<ServerActionReturnType>;
@@ -20,13 +21,8 @@ type Props = {
       label: string;
       placeholder: string;
     };
-    successMessage: {
-      title: string;
-      description: string;
-    };
-    errorMessage: {
-      title: string;
-    };
+    successMessage: string;
+    errorMessage: string;
     buttonLabel: string;
   };
 };
@@ -50,8 +46,7 @@ export default function FeedbackForm({
 
     if (result.success) {
       toast({
-        title: successMessage.title,
-        description: successMessage.description,
+        description: <SuccessMessage message={successMessage}/>
       });
 
       formRef.current?.reset();
@@ -59,7 +54,7 @@ export default function FeedbackForm({
     }
 
     toast({
-      title: errorMessage.title,
+      title: errorMessage,
       description: result.error,
     });
   };
