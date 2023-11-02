@@ -1,5 +1,5 @@
 import FeedbackFormCard from "@/components/FeedbackFormCard";
-import { CommentsCard, PostDescription } from "@/components/Post";
+import { CommentsCard, PostHeading } from "@/components/Post";
 import ShareButtons from "@/components/Post/ShareButtons";
 import { comment } from "@/lib/actions/comment";
 import { getPostById, getPostsMeta } from "@/lib/api";
@@ -43,13 +43,13 @@ export default async function Post({ params: { lang, id } }: Props) {
   const action = async (data: FormData) => {
     "use server";
 
-    await comment(data, id);
+    return await comment(data, id);
   };
 
   return (
     <div className="secondary-container">
       <div className="mb-4">
-        <PostDescription
+        <PostHeading
           categories={categories}
           date={date}
           image={image}

@@ -62,3 +62,9 @@ type TComment = {
 };
 
 type SortBy = "createdAt:desc" | "createdAt:asc" | "name:asc" | "name:desc";
+
+type ServerActionReturnType = {
+  success: boolean;
+  data?: any;
+  error?: string;
+};

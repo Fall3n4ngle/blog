@@ -13,7 +13,7 @@ type Props = {
   categories: Post["attributes"]["categories"];
 };
 
-export default function PostDescription({
+export default function PostHeading({
   categories,
   date,
   image,

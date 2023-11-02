@@ -96,7 +96,7 @@ export default async function Home({
             <Pagination totalPages={pageCount} dictionary={pagination} />
           ) : null}
         </div>
-        <div className="col-span-7 lg:col-span-2 flex gap-6 flex-col sm:flex-row sm:items-start lg:flex-col">
+        <div className="hidden col-span-2 lg:flex gap-6 flex-col sm:flex-row sm:items-start lg:flex-col">
           {author?.attributes ? (
             <AuthorCard attributes={author.attributes} />
           ) : null}

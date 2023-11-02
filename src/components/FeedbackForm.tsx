@@ -6,7 +6,7 @@ import FormButton from "@/components/FormButton";
 import { useToast } from "@/lib/hooks/useToast";
 
 type Props = {
-  action: (data: FormData) => Promise<void>;
+  action: (data: FormData) => Promise<ServerActionReturnType>;
   dictionary: {
     comment: {
       label: string;
@@ -39,28 +39,29 @@ export default function FeedbackForm({
     errorMessage,
     name,
     successMessage,
-    buttonLabel
+    buttonLabel,
   },
 }: Props) {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
   const handleSubmit = async (data: FormData) => {
-    try {
-      await action(data);
+    const result = await action(data);
 
+    if (result.success) {
       toast({
         title: successMessage.title,
         description: successMessage.description,
       });
-    } catch (error: any) {
-      toast({
-        description: error?.message ?? errorMessage,
-        variant: "destructive",
-      });
-    } finally {
+
       formRef.current?.reset();
+      return;
     }
+
+    toast({
+      title: errorMessage.title,
+      description: result.error,
+    });
   };
 
   return (

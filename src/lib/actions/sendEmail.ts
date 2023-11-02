@@ -1,8 +1,11 @@
 import { safeParse } from "valibot";
-import { postComment } from "../api/postComment";
 import { feedbackSchema } from "../validations/feedback";
+import { Resend } from "resend";
+import ContactFormEmail from "@/emails/ContactFormEmail";
 
-export const comment = async (formData: FormData, post: string) => {
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const sendEmail = async (formData: FormData) => {
   const name = formData.get("name");
   const email = formData.get("email");
   const content = formData.get("content");
@@ -10,10 +13,17 @@ export const comment = async (formData: FormData, post: string) => {
   const result = safeParse(feedbackSchema, { name, email, content });
 
   if (result.success) {
-    try {
-      const { output } = result;
+    const { content, email, name } = result.output;
 
-      const data = await postComment({ ...output, post });
+    try {
+      const data = await resend.emails.send({
+        from: process.env.EMAIL_DOMAIN!,
+        to: process.env.AUTHOR_EMAIL!,
+        subject: "Contact form submission",
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${content}`,
+        react: ContactFormEmail({ name, email, content })
+      });
+
       return { success: true, data };
     } catch (error) {
       return {

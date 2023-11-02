@@ -2,7 +2,7 @@ import FeedbackForm from "./FeedbackForm";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui";
 
 type Props = {
-  action: (data: FormData) => Promise<void>;
+  action: (data: FormData) => Promise<ServerActionReturnType>;
   dictionary: {
     title: string;
     form: {

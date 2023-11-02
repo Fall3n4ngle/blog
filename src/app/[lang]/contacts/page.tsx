@@ -1,4 +1,5 @@
 import FeedbackFormCard from "@/components/FeedbackFormCard";
+import { sendEmail } from "@/lib/actions/sendEmail";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { Locale } from "@/lib/i18n/i18n-config";
 
@@ -15,6 +16,8 @@ export default async function Contacts({ params: { lang } }: Props) {
 
   const action = async (data: FormData) => {
     "use server";
+
+    return await sendEmail(data);
   };
 
   return (
