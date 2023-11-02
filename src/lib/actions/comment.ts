@@ -1,6 +1,7 @@
 import { safeParse } from "valibot";
 import { postComment } from "../api/postComment";
 import { feedbackSchema } from "../validations/feedback";
+import { formatIssues } from "../utils/formatIssues";
 
 export const comment = async (formData: FormData, post: string) => {
   const name = formData.get("name");
@@ -22,10 +23,6 @@ export const comment = async (formData: FormData, post: string) => {
       };
     }
   } else {
-    const formattedIssues = result.issues
-      .map((issue) => issue.message)
-      .join(", ");
-
-    return { success: false, error: formattedIssues };
+    return { success: false, error: formatIssues(result.issues) };
   }
 };

@@ -2,10 +2,10 @@
 
 import { cn } from "@/lib/utils/cn";
 import { isActiveLink } from "@/lib/utils/isActiveLink";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { SheetClose } from "../ui";
+import NavigationItem from "./NavigationItem";
 
 type Props = {
   dictionary: Record<
@@ -38,22 +38,22 @@ export default function Navigation({ dictionary, orientation, lang }: Props) {
 
           const link = `/${lang}/${href}`;
 
-          return (
-            <li
-              key={href}
-              className={cn(
-                "hover:text-foreground transition-all px-3 py-2 cursor-pointer text-sm",
-                active && "text-foreground bg-secondary rounded-sm"
-              )}
-            >
-              {orientation === "horizontal" ? (
-                <Link href={link}>{label}</Link>
-              ) : (
-                <SheetClose asChild>
-                  <Link href={href}>{label}</Link>
-                </SheetClose>
-              )}
-            </li>
+          return orientation === "horizontal" ? (
+            <NavigationItem
+              active={active}
+              label={label}
+              link={link}
+              key={link}
+            />
+          ) : (
+            <SheetClose asChild>
+              <NavigationItem
+                active={active}
+                label={label}
+                link={link}
+                key={link}
+              />
+            </SheetClose>
           );
         })}
       </ul>

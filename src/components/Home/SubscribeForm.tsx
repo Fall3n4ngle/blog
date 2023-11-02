@@ -22,9 +22,9 @@ export default function SubscribeForm({
   const { toast } = useToast();
 
   const handleSubmit = async (formData: FormData) => {
-    try {
-      await subscribe(formData);
+    const result = await subscribe(formData);
 
+    if (result.success) {
       toast({
         description: (
           <div className="flex items-center gap-3">
@@ -35,14 +35,15 @@ export default function SubscribeForm({
           </div>
         ),
       });
-    } catch (error: any) {
-      toast({
-        description: error?.message ?? "An error occurred",
-        variant: "destructive",
-      });
-    } finally {
+
       formRef.current?.reset();
+      return;
     }
+
+    toast({
+      description: result.error,
+      variant: "destructive",
+    });
   };
 
   return (

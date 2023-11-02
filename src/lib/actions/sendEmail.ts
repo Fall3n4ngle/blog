@@ -2,6 +2,7 @@ import { safeParse } from "valibot";
 import { feedbackSchema } from "../validations/feedback";
 import { Resend } from "resend";
 import ContactFormEmail from "@/emails/ContactFormEmail";
+import { formatIssues } from "../utils/formatIssues";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -21,7 +22,7 @@ export const sendEmail = async (formData: FormData) => {
         to: process.env.AUTHOR_EMAIL!,
         subject: "Contact form submission",
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${content}`,
-        react: ContactFormEmail({ name, email, content })
+        react: ContactFormEmail({ name, email, content }),
       });
 
       return { success: true, data };
@@ -32,10 +33,6 @@ export const sendEmail = async (formData: FormData) => {
       };
     }
   } else {
-    const formattedIssues = result.issues
-      .map((issue) => issue.message)
-      .join(", ");
-
-    return { success: false, error: formattedIssues };
+    return { success: false, error: formatIssues(result.issues) };
   }
 };
