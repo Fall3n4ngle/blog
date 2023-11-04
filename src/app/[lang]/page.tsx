@@ -96,11 +96,15 @@ export default async function Home({
             <Pagination totalPages={pageCount} dictionary={pagination} />
           ) : null}
         </div>
-        <div className="hidden col-span-2 lg:flex gap-6 flex-col sm:flex-row sm:items-start lg:flex-col">
+        <div className="col-span-7 lg:col-span-2 flex gap-6 flex-col">
           {author?.attributes ? (
-            <AuthorCard attributes={author.attributes} />
+            <div className="hidden lg:block">
+              <AuthorCard attributes={author.attributes} />
+            </div>
           ) : null}
-          <SubscribeCard dictionary={subscribeCard} />
+          <div className="max-w-[420px] self-center">
+            <SubscribeCard dictionary={subscribeCard} />
+          </div>
         </div>
       </div>
     </div>
